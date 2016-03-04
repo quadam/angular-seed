@@ -64,6 +64,10 @@ gulp.task('templates', function() {
 		.pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('clean:templates', ['concatApp', 'templates'], function() {
+	return del('./dist/templates.js');
+});
+
 gulp.task('default', ['processhtml', 'templates', 'concatApp',
-	'concatDeps', 'concatCSS', 'moveModernizr'
+	'concatDeps', 'concatCSS', 'moveModernizr', 'clean:templates'
 ]);
