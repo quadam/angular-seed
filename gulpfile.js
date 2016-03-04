@@ -5,6 +5,8 @@ var processhtml = require('gulp-processhtml');
 var concat = require('gulp-concat');
 var del = require('del');
 var templateCache = require('gulp-angular-templatecache');
+var ngAnnotate = require('gulp-ng-annotate');
+var uglify = require('gulp-uglify');
 
 gulp.task('processhtml', function() {
 	return gulp.src('app/index.html')
@@ -25,7 +27,7 @@ gulp.task('concatCSS', function() {
 	return gulp.src([
 			'./app/bower_components/html5-boilerplate/dist/css/normalize.css',
 			'./app/bower_components/html5-boilerplate/dist/css/main.css',
-      './app/app.css'
+			'./app/app.css'
 		])
 		.pipe(concat('styles.css'))
 		.pipe(gulp.dest('./dist/'));
@@ -47,6 +49,8 @@ gulp.task('concatApp', ['templates'], function() {
 			'./dist/templates.js'
 		])
 		.pipe(concat('app.js'))
+		.pipe(ngAnnotate())
+		.pipe(uglify())
 		.pipe(gulp.dest('./dist/'));
 });
 
