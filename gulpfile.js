@@ -7,6 +7,7 @@ var del = require('del');
 var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
+var cssmin = require('gulp-cssmin');
 
 gulp.task('processhtml', function() {
 	return gulp.src('app/index.html')
@@ -30,6 +31,7 @@ gulp.task('concatCSS', function() {
 			'./app/app.css'
 		])
 		.pipe(concat('styles.css'))
+		.pipe(cssmin())
 		.pipe(gulp.dest('./dist/'));
 });
 
