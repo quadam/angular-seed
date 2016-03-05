@@ -10,6 +10,7 @@
     "module": false,
     "inject": false,
     "require": false,
-    "console": false
+    "console": false,
+    "exports": false
   }
 }

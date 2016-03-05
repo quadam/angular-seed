@@ -68,14 +68,15 @@ app/                    --> all of the source files for the application
       version-directive_test.js  --> version directive tests
       interpolate-filter.js      --> custom interpolation filter
       interpolate-filter_test.js --> interpolate filter tests
-  view1/                --> the view1 view template and logic
-    view1.html            --> the partial template
-    view1.js              --> the controller logic
-    view1_test.js         --> tests of the controller
-  view2/                --> the view2 view template and logic
-    view2.html            --> the partial template
-    view2.js              --> the controller logic
-    view2_test.js         --> tests of the controller
+  views/                --> all views go here
+    view1/                --> the view1 view template and logic
+      view1.html            --> the partial template
+      view1.js              --> the controller logic
+      view1_test.js         --> tests of the controller
+    view2/                --> the view2 view template and logic
+      view2.html            --> the partial template
+      view2.js              --> the controller logic
+      view2_test.js         --> tests of the controller
   app.js                --> main application module
   index.html            --> app layout file (the main html template file of the app)
   index-async.html      --> just like index.html, but loads js files asynchronously
@@ -182,7 +183,13 @@ and gulp will be installed globally and you can run it from the command line.
 
 In `gulpfile.js`, change the parameter moduleName if the main module has another name.
 
-Then just run `gulp` to prepare for production. The result is in the `dist` directory.
+Then just run `gulp` to prepare for production. The result is in the `dist/` directory.
+
+To test the production code, run:
+
+```
+npm run protractor-dist
+```
 
 
 ## Contact
