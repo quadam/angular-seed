@@ -49,7 +49,7 @@ gulp.task('moveModernizr', function() {
 gulp.task('concatApp', ['templates'], function() {
 	return gulp.src([
 			'./app/app.js',
-			'./app/view*/!(*_test).js',
+			'./app/views/**/!(*_test).js',
 			'./app/components/**/!(*_test).js',
 			'./dist/templates.js'
 		])
@@ -60,13 +60,13 @@ gulp.task('concatApp', ['templates'], function() {
 			'$compileProvider.debugInfoEnabled(false);' +
 			'});'))
 		.pipe(ngAnnotate())
-		.pipe(uglify())
+		//.pipe(uglify())
 		.pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('templates', function() {
 	return gulp.src([
-			'./app/view*/*.html'
+			'./app/view*/**/*.html'
 		])
 		.pipe(templateCache({
 			module: moduleName
