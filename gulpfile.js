@@ -9,6 +9,8 @@ var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var cssmin = require('gulp-cssmin');
 
+var moduleName = 'myApp';
+
 gulp.task('processhtml', function() {
 	return gulp.src('app/index.html')
 		.pipe(processhtml())
@@ -17,8 +19,8 @@ gulp.task('processhtml', function() {
 
 gulp.task('concatDeps', function() {
 	return gulp.src([
-			'./app/bower_components/angular/angular.js',
-			'./app/bower_components/angular-route/angular-route.js'
+			'./app/bower_components/angular/angular.min.js',
+			'./app/bower_components/angular-route/angular-route.min.js'
 		])
 		.pipe(concat('libs.js'))
 		.pipe(gulp.dest('./dist/'));
@@ -61,7 +63,7 @@ gulp.task('templates', function() {
 			'./app/view*/*.html'
 		])
 		.pipe(templateCache({
-			module: 'myApp'
+			module: moduleName
 		}))
 		.pipe(gulp.dest('./dist/'));
 });
