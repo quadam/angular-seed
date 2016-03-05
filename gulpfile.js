@@ -8,6 +8,7 @@ var templateCache = require('gulp-angular-templatecache');
 var ngAnnotate = require('gulp-ng-annotate');
 var uglify = require('gulp-uglify');
 var cssmin = require('gulp-cssmin');
+var insert = require('gulp-insert');
 
 var moduleName = 'myApp';
 
@@ -53,6 +54,11 @@ gulp.task('concatApp', ['templates'], function() {
 			'./dist/templates.js'
 		])
 		.pipe(concat('app.js'))
+		.pipe(insert.append(
+			'angular.module(\'' + moduleName +
+			'\').config(function ($compileProvider) {' +
+			'$compileProvider.debugInfoEnabled(false);' +
+			'});'))
 		.pipe(ngAnnotate())
 		.pipe(uglify())
 		.pipe(gulp.dest('./dist/'));
